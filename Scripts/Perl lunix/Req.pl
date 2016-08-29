@@ -11,28 +11,27 @@ my $path = dirname($0);
 $path = "$path/$inf.txt";
 open FILE, "$path" or die "Can't open a file $path: $!";
 
-my $path2; #переменная для хранения путя к config.xml
-sub DBI{ #подпрограмма для считывание данных из файла
+my $path2; #here will be path to config.xml
+sub DBI{ #function for reding data from file
   while(my $string = <FILE>){
-    if($string =~ /-Ddomain.home;(.*?);/){ #ищем адресс местонахождения config.xml
-      $path2 = $1."/config/config.xml"; #сохраняем адресс
+    if($string =~ /-Ddomain.home;(.*?);/){ #search path to config.xml
+      $path2 = $1."/config/config.xml"; #saving adress
     }
 }
 }
 DBI();
 
-open FILE2, $path2 or die; #открываем config.xml
+open FILE2, $path2 or die; #open config.xml
 
-sub Call{ #подпрограмма для обработки данных
-   $new = sprintf("%.0f", $1/4); #+1)*16; вычисление и округление
-   if($new<$new_call){ #определяем, меньше ли $new минимального значения
+sub Call{ #function for changing data
+   $new = sprintf("%.0f", $1/4); #+1)*16; calculation and rounding
+   if($new<$new_call){ #cheсking, smaller or bigger $new minimal value
   	$new = $new_call; #если меньше, то мы присвоем ему минимальное
-  	#print "$new\n"
     }
-   $r[$i2] =~ s/$1/$new/; #заменяем значение глобальной переменной
+   $r[$i2] =~ s/$1/$new/; #change global variable
 };
 
-sub Call2{ #функция, которая проверяет строку, если какая-то переменная выражена в g, то мы переводим её в m
+sub Call2{ #function, which cheсking string, if any variable expressed in gigabyte, we're will be translate it to megabyte
 
 	$new_call = 1024;
 	if($r[$i2] =~ /-Xms(\d+)g/){
@@ -59,13 +58,13 @@ sub Call2{ #функция, которая проверяет строку, если какая-то переменная выражена
 	}
 	$r[$i2] =~ s/\(\)m/m/g;
 } 
-sub Call3{ #функция, которая переводит гигабайты в мегабайты
-	$new = sprintf("%.0f", $1*1024/4); #переводим гигабайты в мегабайты
-	if($new<$new_call){ #определяем, меньше ли $new минимального значения
+sub Call3{ #function, which translate gigabyte to megabytes
+	$new = sprintf("%.0f", $1*1024/4); #translate gigabyte to megabytes
+	if($new<$new_call){ #cheсking, smaller $new minimal value
   	$new = $new_call; #если меньше, то мы присвоем ему минимальное
     }
-	$r[$i2] =~s/$xm$1(g)/$xm$new()m/g; #меняем данные в масиве
-	$r[$i2] =~s/$xm=$1(g)/$xm=$new()m/g; #меняем данные в масиве
+	$r[$i2] =~s/$xm$1(g)/$xm$new()m/g; #redacting array
+	$r[$i2] =~s/$xm=$1(g)/$xm=$new()m/g; #redacting array
 	
 }
 
@@ -79,53 +78,53 @@ unless(open FILE4, '>', "$path2.bak"){ #цикл, где мы создадим бэкап файл в папке
 
 while(my $z = <FILE2>){ #цикл, где мы считываем текст из config.xml и записываем их в бэкап файлы
 push my @r2, $z;
-print FILE3 @r2 or die "Can't write to bak file"; #записываем текущую версию в бэкап файл
-print FILE4 @r2 or die "Can't write to bak file"; #записываем текущую версию в бэкап файл
+print FILE3 @r2 or die "Can't write to bak file"; #write current text of file in the bak file
+print FILE4 @r2 or die "Can't write to bak file"; #write current text of file in the bak file
 }
-close FILE3 or die "can't close bak file"; #закрываем бэкап файл
-close FILE4 or die "can't close bak file"; #закрываем бэкап файл
+close FILE3 or die "can't close bak file"; #close bak file
+close FILE4 or die "can't close bak file"; #close bak file
 
 
 open FILE2, $path2 or die;
 
 while($_ = <FILE2>){ #цикл с перебором файла посторочно
-push @r, $_; #помецаем строки в масив
-++$i3; #прибавляем +1 к индефикатору количества элементов в массиве
+push @r, $_; #adding strings to array
+++$i3; #adding +1 to indefecator количества элементов in the array
   if($i3 > 2){ #если в масиве больше 2 элементов, то мы начинаем его проверять
    if($r[$i] =~/<name>(.*?)<\/name>/, $r[$i2] =~/<arguments>-Xms(\d+). -Xmx(\d+). -XX/){ #если мы находим нужные элементы, то мы стартуем условие if
       if($r[$i2] =~ /(\d+)g/){ #ищем число выраженное в g
-       Call2(); #запускаем подпрограмму
+       Call2(); #starting function
       }
        
        $new_call = 1024; #задаём минимальное значение
        $r[$i2] =~ /-Xms(\d+)m/; #даём значение для переменной $1
-       Call(); #запускаем подпрограмму
+       Call(); #starting function
        
        $new_call = 4096; #задаём минимальное значение
        $r[$i2] =~ /-Xmx(\d+)m/; #даём значение переменной $1
-       Call(); #запускаем подпрограмму
+       Call(); #starting function
        
        $new_call = 512; #задаём минимальное значение
        $r[$i2] =~ /-XX:PermSize=(\d+)m/; #даём значение переменной $1
-       Call(); #запускаем подпрограмму
+       Call(); #starting function
        
        $new_call = 1024; #задаём минимальное значение
        $r[$i2] =~ /-XX:MaxPermSize=(\d+)m/; #даём значение переменной $1
-       Call(); #запускаем подпрограмму
+       Call(); #starting function
 
 #print $r[$i]; 
-#print $r[$i2]; #эти три строки будут показывать результат вычислений, на данный момент они закоментированы
+#print $r[$i2]; #these strings show result of calculation
 #print "\n";
 }
-++$i; #+1 к индефикатору 1 элемента массива
-++$i2; #+1 к индефикатору элемента, который находится ниже другого элемента с индефикатором ++$i
+++$i; #adding 1 to indeficator of 1st element of array
+++$i2; #adding 1 to indeficator of element, which находится ниже another element with indeficator $i
 }
 }
-close FILE or die; #закрываем файл
+close FILE or die; #close file
 
-open FILE5, '>', $path2 or die "Can't open file config.xml: $!"; #открываем файл config.xml
-print FILE5 @r; #записываем в файл данные
-close FILE5; #закрываем файл
+open FILE5, '>', $path2 or die "Can't open file config.xml: $!"; #open file config.xml
+print FILE5 @r; #writing to the file
+close FILE5; #close file
 
 
 print 'DONE';
