@@ -1,3 +1,6 @@
+#################################################################################
+#WARING! If file empty or in file only one string, it's a problem with weblogic!#
+#################################################################################
 use File::Basename; #dirname()
 open PS, 'ps -eo args|grep -i weblogic.name|set -eo pipefail|' or die "use the command of terminal 'ps -eo args|grep -i weblogic.name|set -o pipefail|' failed..."; #read global variables
 
