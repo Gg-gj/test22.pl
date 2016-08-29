@@ -1,0 +1,2 @@
+<pattern>[%date{yyyy-MM-dd}T%date{HH:mm:ss}.%date{SSS}+03:00] [WC_Portlet] [%replace(%level){'WARN', 'WARNING'}] [] [%class] [tid: %replace(%t){'\s', ''}] [userId: %X{web.user.login}] [ecid: 0000KqPnw2rFW7t6wfZf6G1LPhoQ000001,0] [APP: em] MDC = %X, NDC= %x, %message %n</pattern> 
+<charset>${logback.encoding}</charset>
