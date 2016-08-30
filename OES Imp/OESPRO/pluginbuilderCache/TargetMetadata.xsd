@@ -1,0 +1,3977 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/enterprisemanager/targettype" xmlns="http://xmlns.oracle.com/enterprisemanager/targettype" >
+
+  <xs:element name="TargetMetadata" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Display" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="TargetComponent" >
+</xs:element>
+
+        <xs:element minOccurs="0" ref="TypeProperties" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="AssocTarget" >
+</xs:element>
+
+        <xs:element minOccurs="0" ref="DiscoveryHelper" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="MonitoringMode" >
+</xs:element>
+
+        <xs:element minOccurs="0" ref="AltSkipCondition" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="MetricClass" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Metric" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Admin_Action" >
+</xs:element>
+
+        <xs:element minOccurs="0" ref="CredentialInfo" >
+</xs:element>
+
+        <xs:element minOccurs="0" ref="InstanceProperties" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="META_VER" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="TYPE" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="REQUIRED_AGENT_VERSION" >
+</xs:attribute>
+
+      <xs:attribute name="HELPID" >
+</xs:attribute>
+
+      <xs:attribute name="HELP" >
+</xs:attribute>
+
+      <xs:attribute name="CATEGORY_PROPERTIES" >
+</xs:attribute>
+
+      <xs:attribute name="TYPE_RELATIONSHIP" >
+</xs:attribute>
+
+      <xs:attribute name="PRODUCT_ID" >
+</xs:attribute>
+
+      <xs:attribute name="RESOURCE_BUNDLE_PACKAGE" >
+</xs:attribute>
+
+      <xs:attribute name="PARENT_TARGET_TYPE" >
+</xs:attribute>
+
+      <xs:attribute name="PARENT_TARGET_TYPE_META_VER" >
+</xs:attribute>
+
+      <xs:attribute name="MIN_PLUGIN_VERSION" >
+</xs:attribute>
+
+      <xs:attribute name="OCM_GC_MERGED" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="TargetComponent" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" ref="Display" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="Name" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="TypeProperties" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="TypeProperty" >
+</xs:element>
+
+      </xs:sequence>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="TypeProperty" >
+
+    <xs:complexType >
+
+      <xs:attribute name="PROPERTY_NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="PROPERTY_VALUE" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="AssocTarget" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="AssocPropDef" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="ASSOC_TARGET" >
+</xs:attribute>
+
+      <xs:attribute name="TYPE" >
+</xs:attribute>
+
+      <xs:attribute name="ASSOCIATION_NAME" >
+</xs:attribute>
+
+      <xs:attribute name="NAME_NLSID" >
+</xs:attribute>
+
+      <xs:attribute name="DESCRIPTION" >
+</xs:attribute>
+
+      <xs:attribute name="DESCRIPTION_NLSID" >
+</xs:attribute>
+
+      <xs:attribute name="SOURCE_TARGET_TYPE" >
+</xs:attribute>
+
+      <xs:attribute name="ASSOC_TARGET_TYPE" >
+</xs:attribute>
+
+      <xs:attribute name="CARDINALITY" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="OPTIONAL_SINGLE_CARDINAL" >
+</xs:enumeration>
+
+            <xs:enumeration value="REQUIRED_SINGLE_CARDINAL" >
+</xs:enumeration>
+
+            <xs:enumeration value="OPTIONAL_MULTI_CARDINAL" >
+</xs:enumeration>
+
+            <xs:enumeration value="REQUIRED_MULTI_CARDINAL" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="ASSOC_TYPE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="RELATES_TO" >
+</xs:enumeration>
+
+            <xs:enumeration value="DEPENDS_ON" >
+</xs:enumeration>
+
+            <xs:enumeration value="CONNECTS_TO" >
+</xs:enumeration>
+
+            <xs:enumeration value="SERVICE_ACCESS_POINT" >
+</xs:enumeration>
+
+            <xs:enumeration value="RUNS_ON" >
+</xs:enumeration>
+
+            <xs:enumeration value="CONTAINS" >
+</xs:enumeration>
+
+            <xs:enumeration value="HOSTED_BY" >
+</xs:enumeration>
+
+            <xs:enumeration value="MONITORED_BY" >
+</xs:enumeration>
+
+            <xs:enumeration value="OPTIONALLY_CONNECTS_TO" >
+</xs:enumeration>
+
+            <xs:enumeration value="SECURED_BY" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="COMPUTE_RULE" default="NONE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="PARENT" >
+</xs:enumeration>
+
+            <xs:enumeration value="MEMBER" >
+</xs:enumeration>
+
+            <xs:enumeration value="NONE" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="AssocPropDef" >
+
+    <xs:complexType >
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="REQUIRED" use="required" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="MetricClass" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="MetricCategory" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="Functional" >
+</xs:enumeration>
+
+            <xs:enumeration value="Service" >
+</xs:enumeration>
+
+            <xs:enumeration value="FunctionalGroup" >
+</xs:enumeration>
+
+            <xs:enumeration value="Default" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="NLSID" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="Admin_Action" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ValidIf" >
+</xs:element>
+
+        <xs:element minOccurs="0" ref="Display" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="AdminDescriptor" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="AdminDescriptor" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ValidIf" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Property" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="ADMINLET_ID" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="REMOTE" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="ON_TARGET" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="MetricCategory" >
+
+    <xs:complexType >
+
+      <xs:attribute name="NAME" use="required" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="Fault" >
+</xs:enumeration>
+
+            <xs:enumeration value="Capacity" >
+</xs:enumeration>
+
+            <xs:enumeration value="Unclassified" >
+</xs:enumeration>
+
+            <xs:enumeration value="Load" >
+</xs:enumeration>
+
+            <xs:enumeration value="Response" >
+</xs:enumeration>
+
+            <xs:enumeration value="BusinessKPI" >
+</xs:enumeration>
+
+            <xs:enumeration value="Error" >
+</xs:enumeration>
+
+            <xs:enumeration value="Utilization" >
+</xs:enumeration>
+
+            <xs:enumeration value="LoadType" >
+</xs:enumeration>
+
+            <xs:enumeration value="Availability" >
+</xs:enumeration>
+
+            <xs:enumeration value="Security" >
+</xs:enumeration>
+
+            <xs:enumeration value="Usage" >
+</xs:enumeration>
+
+            <xs:enumeration value="Performance" >
+</xs:enumeration>
+
+            <xs:enumeration value="Business" >
+</xs:enumeration>
+
+            <xs:enumeration value="WebCenter" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="NLSID" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="Metric" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:choice minOccurs="0" maxOccurs="unbounded" >
+
+          <xs:element ref="ValidIf" >
+</xs:element>
+
+          <xs:element ref="ValidMidTierVersions" >
+</xs:element>
+
+        </xs:choice>
+
+        <xs:element minOccurs="0" ref="Display" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="CategoryValue" >
+</xs:element>
+
+        <xs:element minOccurs="0" ref="TableDescriptor" >
+</xs:element>
+
+        <xs:choice minOccurs="0" maxOccurs="unbounded" >
+
+          <xs:choice >
+
+            <xs:element ref="QueryDescriptor" >
+</xs:element>
+
+            <xs:element ref="ExecutionDescriptor" >
+</xs:element>
+
+          </xs:choice>
+
+          <xs:element ref="PushDescriptor" >
+</xs:element>
+
+        </xs:choice>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="TYPE" default="NUMBER" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="NUMBER" >
+</xs:enumeration>
+
+            <xs:enumeration value="STRING" >
+</xs:enumeration>
+
+            <xs:enumeration value="TABLE" >
+</xs:enumeration>
+
+            <xs:enumeration value="RAW" >
+</xs:enumeration>
+
+            <xs:enumeration value="EXTERNAL" >
+</xs:enumeration>
+
+            <xs:enumeration value="REPOSITORY_TABLE" >
+</xs:enumeration>
+
+            <xs:enumeration value="REPOSITORY_NUMBER" >
+</xs:enumeration>
+
+            <xs:enumeration value="REPOSITORY_STRING" >
+</xs:enumeration>
+
+            <xs:enumeration value="REPOSITORY_EVENT" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="REPOS_PLSQL" >
+</xs:attribute>
+
+      <xs:attribute name="REPOSITORY" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="USAGE_TYPE" default="VIEW_COLLECT" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="VIEW_COLLECT" >
+</xs:enumeration>
+
+            <xs:enumeration value="REALTIME_ONLY" >
+</xs:enumeration>
+
+            <xs:enumeration value="HIDDEN" >
+</xs:enumeration>
+
+            <xs:enumeration value="HIDDEN_COLLECT" >
+</xs:enumeration>
+
+            <xs:enumeration value="COLLECT_UPLOAD" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="KEYS_FROM_MULT_COLLS" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="IS_TEST_METRIC" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="KEYS_ONLY" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="REMOTE" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="IS_TRANSPOSED" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="HELP" >
+</xs:attribute>
+
+      <xs:attribute name="IS_METRIC_LONG_RUNNING" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="CONFIG" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="FORCE_CACHE" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="NUM_CACHE_VALUES" default="1" >
+</xs:attribute>
+
+      <xs:attribute name="IS_INCREMENTAL" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="INCREMENTAL_ALGORITHM" default="FULL" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="FULL" >
+</xs:enumeration>
+
+            <xs:enumeration value="ROW" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="DELETION_ALLOWED" default="TRUE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="IS_MASTER" default="TRUE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="AGENT_MODE" default="GC" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="ValidIf" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element maxOccurs="unbounded" ref="CategoryProp" >
+</xs:element>
+
+      </xs:sequence>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="CategoryProp" >
+
+    <xs:complexType >
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="CHOICES" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="ValidMidTierVersions" >
+
+    <xs:complexType >
+
+      <xs:attribute name="PLUG_IN" >
+</xs:attribute>
+
+      <xs:attribute name="START_VER" >
+</xs:attribute>
+
+      <xs:attribute name="END_VER" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="TableDescriptor" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ColumnDescriptor" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="CustomTableMapper" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="TABLE_NAME" >
+</xs:attribute>
+
+      <xs:attribute name="SKIP_TARGET_COLUMN" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="SKIP_METRIC_COLUMN" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="SKIP_COLLTIME_PK" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="SKIP_COLLTIME_COLUMN" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="SKIP_LOAD_ID_COLUMN" default="TRUE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="ColumnDescriptor" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" ref="Display" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="CategoryValue" >
+</xs:element>
+
+        <xs:element minOccurs="0" ref="TableDescriptor" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="TYPE" default="NUMBER" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="NUMBER" >
+</xs:enumeration>
+
+            <xs:enumeration value="STRING" >
+</xs:enumeration>
+
+            <xs:enumeration value="RAW" >
+</xs:enumeration>
+
+            <xs:enumeration value="CLOB" >
+</xs:enumeration>
+
+            <xs:enumeration value="BLOB" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="IS_FILENAME" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="IS_KEY" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="TRANSIENT" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="COMPUTE_EXPR" >
+</xs:attribute>
+
+      <xs:attribute name="REPLACE_FETCHED_VALUE" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="COLUMN_NAME" >
+</xs:attribute>
+
+      <xs:attribute name="IS_LONG_TEXT" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="IS_DATE" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="STATELESS_ALERTS" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="IS_TIMESTAMP" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="IS_TARGET_SEPARATOR" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="NON_THRESHOLDED_ALERTS" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="KEYONLY_THRESHOLDS" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="RENDERABLE" default="TRUE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="HELP" >
+</xs:attribute>
+
+      <xs:attribute name="IN_DIFF" default="TRUE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="REPLACE_UNPRINTABLE_CHARS" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="ROLLUP_TYPE" default="MAX" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="MAX" >
+</xs:enumeration>
+
+            <xs:enumeration value="MIN" >
+</xs:enumeration>
+
+            <xs:enumeration value="AVG" >
+</xs:enumeration>
+
+            <xs:enumeration value="SUM" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="DISPLAY_PRIORITY" default="0" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="0" >
+</xs:enumeration>
+
+            <xs:enumeration value="1" >
+</xs:enumeration>
+
+            <xs:enumeration value="2" >
+</xs:enumeration>
+
+            <xs:enumeration value="3" >
+</xs:enumeration>
+
+            <xs:enumeration value="4" >
+</xs:enumeration>
+
+            <xs:enumeration value="5" >
+</xs:enumeration>
+
+            <xs:enumeration value="6" >
+</xs:enumeration>
+
+            <xs:enumeration value="7" >
+</xs:enumeration>
+
+            <xs:enumeration value="8" >
+</xs:enumeration>
+
+            <xs:enumeration value="9" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="COMPONENT_TYPE" >
+</xs:attribute>
+
+      <xs:attribute name="COMPONENT_SNAPSHOT_TYPE" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="CustomTableMapper" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ValidMidTierVersions" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ColumnMapper" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="REP_TABLE_NAME" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="ColumnMapper" >
+
+    <xs:complexType >
+
+      <xs:attribute name="METRIC_COLUMN" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="REP_TABLE_COLUMN" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="QueryDescriptor" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:sequence >
+
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="ValidIf" >
+</xs:element>
+
+          <xs:choice minOccurs="0" maxOccurs="unbounded" >
+
+            <xs:element ref="Property" >
+</xs:element>
+
+            <xs:element ref="CredentialRef" >
+</xs:element>
+
+          </xs:choice>
+
+        </xs:sequence>
+
+        <xs:element minOccurs="0" ref="ExceptionTable" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="FETCHLET_ID" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="NEED_CHARSET_CONVERT" default="TRUE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="REMOTE" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="ON_TARGET" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="CACHE_AGGREGATION" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="STREAM_SUPPORT" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="APPLICATION_IDS" >
+</xs:attribute>
+
+      <xs:attribute name="AGENT_MODE" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="CredentialRef" >
+
+    <xs:complexType mixed="true" >
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="ASSOC_TGT" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="Property" >
+
+    <xs:complexType mixed="true" >
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="SCOPE" default="GLOBAL" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="GLOBAL" >
+</xs:enumeration>
+
+            <xs:enumeration value="INSTANCE" >
+</xs:enumeration>
+
+            <xs:enumeration value="USER" >
+</xs:enumeration>
+
+            <xs:enumeration value="SYSTEMGLOBAL" >
+</xs:enumeration>
+
+            <xs:enumeration value="ENV" >
+</xs:enumeration>
+
+            <xs:enumeration value="HOST" >
+</xs:enumeration>
+
+            <xs:enumeration value="CACHE" >
+</xs:enumeration>
+
+            <xs:enumeration value="ASSOCTGT" >
+</xs:enumeration>
+
+            <xs:enumeration value="ALL_INSTANCE" >
+</xs:enumeration>
+
+            <xs:enumeration value="EXECUTION" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="ASSOCIATION_NAME" >
+</xs:attribute>
+
+      <xs:attribute name="OPTIONAL" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="Display" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ValidIf" >
+</xs:element>
+
+        <xs:element ref="Label" >
+</xs:element>
+
+        <xs:element minOccurs="0" ref="ShortName" >
+</xs:element>
+
+        <xs:element minOccurs="0" ref="Icon" >
+</xs:element>
+
+        <xs:element minOccurs="0" ref="Description" >
+</xs:element>
+
+        <xs:element minOccurs="0" ref="Unit" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="FOR_SUMMARY_UI" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="Label" >
+
+    <xs:complexType mixed="true" >
+
+      <xs:attribute name="NLSID" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="ShortName" >
+
+    <xs:complexType mixed="true" >
+
+      <xs:attribute name="NLSID" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="Icon" >
+
+    <xs:complexType mixed="true" >
+
+      <xs:attribute name="GIF" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="Description" >
+
+    <xs:complexType mixed="true" >
+
+      <xs:attribute name="NLSID" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="Unit" >
+
+    <xs:complexType mixed="true" >
+
+      <xs:attribute name="NLSID" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="MonitoringMode" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ValidIf" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="MEDIATOR" use="required" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="AgentMediated" >
+</xs:enumeration>
+
+            <xs:enumeration value="OMSMediated" >
+</xs:enumeration>
+
+            <xs:enumeration value="Repository" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="CLUSTERDESCRIPTOR" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="AltSkipCondition" >
+
+    <xs:complexType mixed="true" >
+
+      <xs:attribute name="METRIC" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="COLUMN" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="ASSOC_TARGET" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="CredentialInfo" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="CredentialType" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="CredentialSet" >
+</xs:element>
+
+      </xs:sequence>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="CredentialType" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" ref="Display" >
+</xs:element>
+
+        <xs:choice maxOccurs="unbounded" >
+
+          <xs:element ref="CredentialTypeColumn" >
+</xs:element>
+
+          <xs:element ref="CredentialTypeRef" >
+</xs:element>
+
+        </xs:choice>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="CredentialTypeColumn" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" ref="Display" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="CredentialTypeColumnValue" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="IS_KEY" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="IS_SENSITIVE" default="TRUE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="IS_FILE_INPUT" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="CredentialTypeColumnValue" >
+
+    <xs:complexType mixed="true" >
+
+      <xs:attribute name="IS_DEFAULT" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="CredentialTypeRef" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="CredentialTypeRefColumn" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="REF_NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="REF_TYPE" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="REF_TARGETTYPE" >
+</xs:attribute>
+
+      <xs:attribute name="ASSOCIATION" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="CredentialTypeRefColumn" >
+
+    <xs:complexType >
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="REF_TYPECOLUMN" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="Credential" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Property" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="CRED_TYPE" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="CredentialSet" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" ref="Display" >
+</xs:element>
+
+        <xs:choice >
+
+          <xs:element maxOccurs="unbounded" ref="CredentialSetColumn" >
+</xs:element>
+
+          <xs:element maxOccurs="unbounded" ref="AllowedCredType" >
+</xs:element>
+
+        </xs:choice>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="CREDENTIAL_TYPE" >
+</xs:attribute>
+
+      <xs:attribute name="PREFIX" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="SRC_ASSOCTGT" >
+</xs:attribute>
+
+      <xs:attribute name="USAGE" default="MONITORING" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="MONITORING" >
+</xs:enumeration>
+
+            <xs:enumeration value="PREFERRED_CRED" >
+</xs:enumeration>
+
+            <xs:enumeration value="SYSTEM" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="CONTEXT_TYPE" default="TARGET" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TARGET" >
+</xs:enumeration>
+
+            <xs:enumeration value="CONTAINER" >
+</xs:enumeration>
+
+            <xs:enumeration value="COLLECTION" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="CONTEXT" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="AllowedCredType" >
+
+    <xs:complexType >
+
+      <xs:attribute name="TYPE" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="CredentialSetColumn" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" ref="Display" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="CredentialSetColumnValue" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="TYPE_COLUMN" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="SET_COLUMN" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="CredentialSetColumnValue" >
+
+    <xs:complexType mixed="true" >
+
+      <xs:attribute name="IS_DEFAULT" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="InstanceProperties" >
+
+    <xs:complexType >
+
+      <xs:choice minOccurs="0" maxOccurs="unbounded" >
+
+        <xs:element ref="InstanceProperty" >
+</xs:element>
+
+        <xs:element ref="DynamicProperties" >
+</xs:element>
+
+      </xs:choice>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="InstanceProperty" >
+
+    <xs:complexType mixed="true" >
+
+      <xs:choice minOccurs="0" maxOccurs="unbounded" >
+
+        <xs:element ref="ValidIf" >
+</xs:element>
+
+        <xs:element ref="Display" >
+</xs:element>
+
+      </xs:choice>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="OPTIONAL" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="CREDENTIAL" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="READONLY" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="NEED_REENTER" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="HIDE_ENTRY" default="TRUE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="CHECK_ORIGINAL" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="IS_COMPUTED" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="WAS_REQUIRED" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="AGENT_MODE" default="GC" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="DynamicProperties" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ValidIf" >
+</xs:element>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ReevalCondition" >
+</xs:element>
+
+        <xs:choice maxOccurs="unbounded" >
+
+          <xs:element ref="QueryDescriptor" >
+</xs:element>
+
+          <xs:element ref="ExecutionDescriptor" >
+</xs:element>
+
+        </xs:choice>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="PROP_LIST" >
+</xs:attribute>
+
+      <xs:attribute name="OPT_PROP_LIST" >
+</xs:attribute>
+
+      <xs:attribute name="FORMAT" default="TABLE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TABLE" >
+</xs:enumeration>
+
+            <xs:enumeration value="ROW" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="IS_CRITICAL" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="AGENT_MODE" default="GC" >
+</xs:attribute>
+
+      <xs:attribute name="COMPUTE_WHEN_DOWN" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="ReevalCondition" >
+
+    <xs:complexType >
+
+      <xs:attribute name="METRIC" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="COLUMN" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="ExecutionDescriptor" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ValidIf" >
+</xs:element>
+
+        <xs:choice minOccurs="0" maxOccurs="unbounded" >
+
+          <xs:element ref="GetTable" >
+</xs:element>
+
+          <xs:element ref="GetView" >
+</xs:element>
+
+          <xs:element ref="GroupBy" >
+</xs:element>
+
+          <xs:element ref="Union" >
+</xs:element>
+
+          <xs:element ref="JoinTables" >
+</xs:element>
+
+        </xs:choice>
+
+        <xs:element minOccurs="0" ref="ExceptionTable" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="CACHE_AGGREGATION" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="DUPLICATE_HANDLING" default="DUPLICATE_ERROR" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="DUPLICATE_ERROR" >
+</xs:enumeration>
+
+            <xs:enumeration value="DUPLICATE_PICKFIRST" >
+</xs:enumeration>
+
+            <xs:enumeration value="DUPLICATE_PICKLAST" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="AGENT_MODE" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="GetTable" >
+
+    <xs:complexType >
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="ASSOC_TARGET" >
+</xs:attribute>
+
+      <xs:attribute name="METRIC_NAME" >
+</xs:attribute>
+
+      <xs:attribute name="USE_CACHE" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+            <xs:enumeration value="TRUE_IF_COLLECT" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="CACHE_DEPTH" default="1" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="GetView" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:choice minOccurs="0" maxOccurs="unbounded" >
+
+          <xs:element ref="ComputeColumn" >
+</xs:element>
+
+          <xs:element ref="Column" >
+</xs:element>
+
+        </xs:choice>
+
+        <xs:choice minOccurs="0" maxOccurs="unbounded" >
+
+          <xs:element ref="Filter" >
+</xs:element>
+
+          <xs:element ref="In" >
+</xs:element>
+
+        </xs:choice>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="FROM_TABLE" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="ExceptionTable" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ComputeColumn" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="EXPR" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="Filter" >
+
+    <xs:complexType mixed="true" >
+
+      <xs:attribute name="COLUMN_NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="SCOPE" default="GLOBAL" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="GLOBAL" >
+</xs:enumeration>
+
+            <xs:enumeration value="INSTANCE" >
+</xs:enumeration>
+
+            <xs:enumeration value="SYSTEMGLOBAL" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="OPERATOR" default="EQ" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="EQ" >
+</xs:enumeration>
+
+            <xs:enumeration value="LT" >
+</xs:enumeration>
+
+            <xs:enumeration value="GT" >
+</xs:enumeration>
+
+            <xs:enumeration value="LE" >
+</xs:enumeration>
+
+            <xs:enumeration value="GE" >
+</xs:enumeration>
+
+            <xs:enumeration value="NE" >
+</xs:enumeration>
+
+            <xs:enumeration value="CONTAINS" >
+</xs:enumeration>
+
+            <xs:enumeration value="MATCH" >
+</xs:enumeration>
+
+            <xs:enumeration value="ISNULL" >
+</xs:enumeration>
+
+            <xs:enumeration value="ISNOTNULL" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="Column" >
+
+    <xs:complexType >
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="COLUMN_NAME" >
+</xs:attribute>
+
+      <xs:attribute name="TABLE_NAME" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="ComputeColumn" >
+
+    <xs:complexType >
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="EXPR" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="IS_VALUE" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="DEFAULT_WHEN_EMPTY" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="DEFAULT_VALUE" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="In" >
+
+    <xs:complexType >
+
+      <xs:attribute name="COLUMN_NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="IN_TABLE_NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="IN_COLUMN_NAME" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="GroupBy" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="By" >
+</xs:element>
+
+        <xs:choice minOccurs="0" maxOccurs="unbounded" >
+
+          <xs:element ref="AggregateColumn" >
+</xs:element>
+
+          <xs:element ref="ComputeColumn" >
+</xs:element>
+
+        </xs:choice>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="FROM_TABLE" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="By" >
+
+    <xs:complexType >
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="COLUMN_NAME" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="AggregateColumn" >
+
+    <xs:complexType >
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="COLUMN_NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="OPERATOR" default="SUM" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="MAX" >
+</xs:enumeration>
+
+            <xs:enumeration value="MIN" >
+</xs:enumeration>
+
+            <xs:enumeration value="SUM" >
+</xs:enumeration>
+
+            <xs:enumeration value="AVG" >
+</xs:enumeration>
+
+            <xs:enumeration value="COUNT" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="Union" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element maxOccurs="unbounded" ref="Table" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="DISTINCT" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="Table" >
+
+    <xs:complexType >
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="JoinTables" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element ref="Table" >
+</xs:element>
+
+        <xs:element maxOccurs="unbounded" ref="Table" >
+</xs:element>
+
+        <xs:choice minOccurs="0" maxOccurs="unbounded" >
+
+          <xs:element ref="Column" >
+</xs:element>
+
+          <xs:element ref="ComputeColumn" >
+</xs:element>
+
+        </xs:choice>
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Where" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="OUTER" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="BOTH_SIDE" default="FALSE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  <xs:element name="Where" >
+
+    <xs:complexType >
+
+      <xs:attribute name="FROM_TABLE" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="FROM_KEY" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="OPERATOR" default="EQ" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="EQ" >
+</xs:enumeration>
+
+            <xs:enumeration value="GT" >
+</xs:enumeration>
+
+            <xs:enumeration value="GE" >
+</xs:enumeration>
+
+            <xs:enumeration value="LE" >
+</xs:enumeration>
+
+            <xs:enumeration value="LT" >
+</xs:enumeration>
+
+            <xs:enumeration value="NE" >
+</xs:enumeration>
+
+            <xs:enumeration value="CONTAINS" >
+</xs:enumeration>
+
+            <xs:enumeration value="MATCH" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+      <xs:attribute name="JOIN_TABLE" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="JOIN_KEY" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="PushDescriptor" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="ValidIf" >
+</xs:element>
+
+        <xs:choice minOccurs="0" maxOccurs="unbounded" >
+
+          <xs:element ref="Property" >
+</xs:element>
+
+          <xs:element ref="CredentialRef" >
+</xs:element>
+
+        </xs:choice>
+
+      </xs:sequence>
+
+      <xs:attribute name="RECVLET_ID" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="DiscoveryHelper" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="DiscoveryHint" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="CATEGORYNAME" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="OUI_BASED" default="TRUE" >
+
+        <xs:simpleType >
+
+          <xs:restriction base="xs:token" >
+
+            <xs:enumeration value="TRUE" >
+</xs:enumeration>
+
+            <xs:enumeration value="True" >
+</xs:enumeration>
+
+            <xs:enumeration value="true" >
+</xs:enumeration>
+
+            <xs:enumeration value="FALSE" >
+</xs:enumeration>
+
+            <xs:enumeration value="False" >
+</xs:enumeration>
+
+            <xs:enumeration value="false" >
+</xs:enumeration>
+
+          </xs:restriction>
+
+        </xs:simpleType>
+
+      </xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="DiscoveryHint" >
+
+    <xs:complexType >
+
+      <xs:sequence >
+
+        <xs:element minOccurs="0" ref="Display" >
+</xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="NAME" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+  
+  <xs:element name="CategoryValue" >
+
+    <xs:complexType >
+
+      <xs:attribute name="CLASS" use="required" >
+</xs:attribute>
+
+      <xs:attribute name="CATEGORY_NAME" use="required" >
+</xs:attribute>
+
+    </xs:complexType>
+
+  </xs:element>
+
+</xs:schema>
